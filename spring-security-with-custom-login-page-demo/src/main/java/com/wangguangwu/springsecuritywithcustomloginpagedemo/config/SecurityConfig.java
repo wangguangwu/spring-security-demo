@@ -1,46 +1,59 @@
-package cn.daimajiangxin.springboot.learning.config;
+package com.wangguangwu.springsecuritywithcustomloginpagedemo.config;
 
+import com.wangguangwu.springsecuritywithcustomloginpagedemo.service.CustomUserDetailsService;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * @author wangguangwu
+ */
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig   {
+public class SecurityConfig {
+
     @Resource
-    private UserDetailsService userDetailsService;
+    private CustomUserDetailsService customUserDetailsService;
+
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authorizeRequests ->
-                        authorizeRequests
-                                .requestMatchers("/", "/index")
-                                .permitAll()
-                                .anyRequest().authenticated() // 其他所有请求都需要认证
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(auth -> auth
+                        // 允许访问登录页面和静态资源
+                        .requestMatchers("/login", "/css/**", "/js/**").permitAll()
+                        // 其他请求需要认证
+                        .anyRequest().authenticated()
                 )
-                .formLogin(formLogin ->
-                        formLogin
-                                .loginProcessingUrl("/doLogin")
-                                .loginPage("/login") // 指定登录页面
-                                .successForwardUrl("/index")
-                                .permitAll() // 允许所有人访问登录页面
+                .formLogin(form -> form
+                        // 指定自定义登录页面
+                        .loginPage("/login")
+                        // 登录表单提交地址
+                        .loginProcessingUrl("/doLogin")
+                        // 登录成功后跳转到首页
+                        .defaultSuccessUrl("/index", true)
+                        // 登录失败返回登录页面
+                        .failureUrl("/login?error=true")
+                        .permitAll()
                 )
-                .logout(logout ->
-                        logout
-                                .permitAll() // 允许所有人访问注销URL
-                )    // 注册重写后的UserDetailsService实现
-                .userDetailsService(userDetailsService);
+                .logout(logout -> logout
+                        // 配置注销地址
+                        .logoutUrl("/logout")
+                        // 注销成功后返回登录页面
+                        .logoutSuccessUrl("/login?logout=true")
+                )
+                .userDetailsService(customUserDetailsService)
+                // 禁用 CSRF（仅开发环境下）
+                .csrf(csrf -> csrf.disable());
         return http.build();
-        // 添加自定义过滤器或其他配置
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new StandardPasswordEncoder();
+        return new BCryptPasswordEncoder();
     }
 }
