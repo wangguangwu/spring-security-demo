@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-security-simple-demo
+  # Spring Security config
+  security:
+    # Default account
+    user:
+      name: admin
+      password: 123456
+      roles: ADMIN
