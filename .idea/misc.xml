@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/spring-security-simple-demo/pom.xml" />
         <option value="$PROJECT_DIR$/spring-security-with-custom-login-page-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-security-session-demo/pom.xml" />
       </list>
     </option>
   </component>
