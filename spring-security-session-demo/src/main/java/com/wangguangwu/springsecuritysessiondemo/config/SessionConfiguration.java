@@ -1,7 +1,12 @@
 package com.wangguangwu.springsecuritysessiondemo.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.session.FindByIndexNameSessionRepository;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisIndexedHttpSession;
+import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
 /**
  * 配置类，用于启用 Spring Session 并使用 Redis 作为数据存储。
@@ -22,6 +27,14 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @Configuration
 @EnableRedisIndexedHttpSession
 public class SessionConfiguration {
+
+    @Autowired
+    private FindByIndexNameSessionRepository sessionRepository;
+
+    @Bean
+    public SpringSessionBackedSessionRegistry sessionRegistry() {
+        return new SpringSessionBackedSessionRegistry(sessionRepository);
+    }
 
 }
 
