@@ -8,12 +8,8 @@ import com.wangguangwu.springsecurity02.service.MyUserDetailService;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
@@ -21,8 +17,7 @@ import org.springframework.security.web.util.matcher.OrRequestMatcher;
 /**
  * spring-security 配置类
  *
- * @author minus
- * @since 2023-07-23 14:16
+ * @author wangguangwu
  */
 @Configuration
 @EnableWebSecurity
@@ -46,8 +41,8 @@ public class SecurityConfig {
                         // 登录表单提交地址
                         .loginProcessingUrl("/doLogin")
                         // 自定义用户名和密码参数
-                        .usernameParameter("uname")
-                        .passwordParameter("passwd")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
                         // 登录成功处理器
                         .successHandler(new MyAuthenticationSuccessHandler())
                         // 登录失败处理器
@@ -73,15 +68,5 @@ public class SecurityConfig {
                 // 配置自定义的 UserDetailsService
                 .userDetailsService(myUserDetailService);
         return http.build();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }
