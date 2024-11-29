@@ -1,10 +1,9 @@
-package com.wangguangwu.springsecurity02.config;
+package com.wangguangwu.config;
 
-
-import com.wangguangwu.springsecurity02.handler.MyAuthenticationFailureHandler;
-import com.wangguangwu.springsecurity02.handler.MyAuthenticationSuccessHandler;
-import com.wangguangwu.springsecurity02.handler.MyLogoutSuccessHandler;
-import com.wangguangwu.springsecurity02.service.MyUserDetailService;
+import com.wangguangwu.handler.MyAuthenticationFailureHandler;
+import com.wangguangwu.handler.MyAuthenticationSuccessHandler;
+import com.wangguangwu.service.MyUserDetailService;
+import com.wangguangwu.handler.MyLogoutSuccessHandler;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,8 +40,8 @@ public class SecurityConfig {
                         // 登录表单提交地址
                         .loginProcessingUrl("/doLogin")
                         // 自定义用户名和密码参数
-                        .usernameParameter("username")
-                        .passwordParameter("password")
+                        .usernameParameter("uname")
+                        .passwordParameter("passwd")
                         // 登录成功处理器
                         .successHandler(new MyAuthenticationSuccessHandler())
                         // 登录失败处理器

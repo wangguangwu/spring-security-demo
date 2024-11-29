@@ -1,4 +1,4 @@
-package com.wangguangwu.springsecurity02.entity;
+package com.wangguangwu.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

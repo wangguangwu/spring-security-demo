@@ -1,7 +1,7 @@
-package com.wangguangwu.springsecurity02.service;
+package com.wangguangwu.service;
 
-import com.wangguangwu.springsecurity02.dao.UserDao;
-import com.wangguangwu.springsecurity02.entity.User;
+import com.wangguangwu.entity.User;
+import com.wangguangwu.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

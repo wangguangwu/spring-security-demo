@@ -1,4 +1,4 @@
-package com.wangguangwu.springsecurity02.controller;
+package com.wangguangwu.controller;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.security.core.Authentication;

@@ -1,8 +1,11 @@
-package com.wangguangwu.springsecurity02.controller;
+package com.wangguangwu.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author wangguangwu
+ */
 @RestController
 public class IndexController {
 

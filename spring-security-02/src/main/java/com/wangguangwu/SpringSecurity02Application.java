@@ -1,4 +1,4 @@
-package com.wangguangwu.springsecurity02;
+package com.wangguangwu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

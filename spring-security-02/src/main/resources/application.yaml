@@ -1,23 +1,23 @@
 server:
-  port: 8080
+  port: 8080 # 服务端口配置
 
 spring:
+  # 数据源配置
   datasource:
     url: jdbc:mysql://localhost:3306/securitydb?useUnicode=true&serverTimezone=UTC
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  # Thymeleaf 配置
-  # 关闭缓存
+    username: root # 数据库用户名
+    password: 123456 # 数据库密码
+    driver-class-name: com.mysql.cj.jdbc.Driver # 数据库驱动类
+
+  # Thymeleaf 模板引擎配置
   thymeleaf:
-    cache: false
+    cache: false # 禁用模板缓存，适合开发环境
 
 mybatis:
-  mapper-locations: "classpath*:mapper/*.xml"
-  type-aliases-package: com.wangguangwu.springsecurity02.entity
+  # MyBatis 配置
+  mapper-locations: "classpath*:mapper/*.xml" # Mapper XML 文件路径
+  type-aliases-package: com.wangguangwu.entity # 实体类别名包路径
 
 logging:
   level:
-    com:
-      wangguangwu:
-        springsecurity02: debug
+    com.wangguangwu: debug # 设置项目包的日志级别为 debug

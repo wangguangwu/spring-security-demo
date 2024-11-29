@@ -1,4 +1,4 @@
-package com.wangguangwu.springsecurity02.handler;
+package com.wangguangwu.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;

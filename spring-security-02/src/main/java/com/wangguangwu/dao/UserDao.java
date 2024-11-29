@@ -1,7 +1,7 @@
-package com.wangguangwu.springsecurity02.dao;
+package com.wangguangwu.dao;
 
-import com.wangguangwu.springsecurity02.entity.Role;
-import com.wangguangwu.springsecurity02.entity.User;
+import com.wangguangwu.entity.Role;
+import com.wangguangwu.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
