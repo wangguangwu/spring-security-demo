@@ -7,13 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-security-02" />
-        <module name="spring-security-with-custom-login-page-demo" />
         <module name="spring-security-01" />
-        <module name="spring-security-simple-demo" />
+        <module name="spring-security-memory-auth" />
         <module name="spring-security-session-demo" />
         <module name="spring-security-03" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring-security-simple-demo" target="17" />
+      <module name="spring-security-with-custom-login-page-demo" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -21,6 +24,7 @@
       <module name="spring-security-02" options="-parameters" />
       <module name="spring-security-03" options="-parameters" />
       <module name="spring-security-demo" options="" />
+      <module name="spring-security-memory-auth" options="-parameters" />
       <module name="spring-security-session-demo" options="-parameters" />
       <module name="spring-security-simple-demo" options="-parameters" />
       <module name="spring-security-with-custom-login-page-demo" options="-parameters" />

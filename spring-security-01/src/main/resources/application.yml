@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-security-01
+
+logging:
+  level:
+    com.wangguangwu: debug
+    org.springframework.security: debug
